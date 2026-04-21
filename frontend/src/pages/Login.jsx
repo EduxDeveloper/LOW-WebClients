@@ -20,7 +20,7 @@ const Login = () => {
           </div>
 
           <div className="auth-forgot">
-            <Link to="#">¿Olvidaste tu contraseña?</Link>
+            <Link to="/recuperar">¿Olvidaste tu contraseña?</Link>
           </div>
 
           <button type="submit" className="auth-btn-primary">Iniciar Sesión</button>

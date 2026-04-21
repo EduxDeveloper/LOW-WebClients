@@ -7,10 +7,12 @@ import Home from './pages/Home';
 import Store from './pages/Store';
 import ProductDetail from './pages/ProductDetail';
 import AboutUs from './pages/AboutUs';
+import Contact from './pages/Contact';
 import Reviews from './pages/Reviews';
 import Terms from './pages/Terms';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
 import Checkout from './pages/Checkout';
 import Payment from './pages/Payment';
 import './App.css';
@@ -30,10 +32,12 @@ function App() {
             <Route path="/hombre" element={<Store />} />
             <Route path="/mujer" element={<Store />} />
             <Route path="/sobre-nosotros" element={<AboutUs />} />
+            <Route path="/contacto" element={<Contact />} />
             <Route path="/resenas" element={<Reviews />} />
             <Route path="/terminos" element={<Terms />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Register />} />
+            <Route path="/recuperar" element={<ForgotPassword />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/pago" element={<Payment />} />
             <Route path="/producto/:id" element={<ProductDetail />} />
