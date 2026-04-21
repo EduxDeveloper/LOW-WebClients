@@ -1,14 +1,9 @@
 .product-detail-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #ffffff;
-  z-index: 10000;
-  overflow-y: auto;
+  width: 100%;
+  background-color: transparent;
   display: flex;
   justify-content: center;
+  padding: 2rem 0;
 }
 
 .product-detail-container {
@@ -16,21 +11,6 @@
   max-width: 1200px;
   position: relative;
   padding: 4rem 2rem;
-}
-
-.close-btn {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  font-size: 2rem;
-  font-weight: 300;
-  color: var(--text-dark);
-  transition: transform 0.2s ease;
-  z-index: 10;
-}
-
-.close-btn:hover {
-  transform: scale(1.1);
 }
 
 .product-detail-content {

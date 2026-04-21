@@ -14,10 +14,6 @@ const ProductDetail = () => {
   
   const productPrice = 109.00; // Mocked for now
 
-  const handleClose = () => {
-    navigate(-1); // Go back to previous page
-  };
-
   const decreaseQuantity = () => {
     if (quantity > 1) setQuantity(quantity - 1);
   };
@@ -30,10 +26,6 @@ const ProductDetail = () => {
     <div className="product-detail-overlay">
       <div className="product-detail-container">
         
-        <button className="close-btn" onClick={handleClose}>
-          ✕
-        </button>
-
         <div className="product-detail-content">
           <div className="product-image-section">
             <img src={DEFAULT_IMAGE} alt="Product" className="detail-image" />
