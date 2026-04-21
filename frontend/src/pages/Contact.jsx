@@ -1,3 +1,5 @@
+import twitterIcon from '../assets/images/Twitter.webp';
+import instagramIcon from '../assets/images/instagram.webp';
 import './Contact.css';
 
 const Contact = () => {
@@ -75,9 +77,12 @@ const Contact = () => {
           <div className="contact-info-block">
             <h3>Síguenos</h3>
             <div className="contact-socials">
-              <a href="#" className="contact-social-icon">📷</a>
-              <a href="#" className="contact-social-icon">🐦</a>
-              <a href="#" className="contact-social-icon">🎵</a>
+              <a href="https://instagram.com" className="contact-social-icon" target="_blank" rel="noreferrer">
+                <img src={instagramIcon} alt="Instagram" style={{ width: '20px', height: '20px' }} />
+              </a>
+              <a href="https://twitter.com" className="contact-social-icon" target="_blank" rel="noreferrer">
+                <img src={twitterIcon} alt="Twitter" style={{ width: '20px', height: '20px' }} />
+              </a>
             </div>
           </div>
         </div>

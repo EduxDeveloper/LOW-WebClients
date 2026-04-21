@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Banknote, CreditCard } from 'lucide-react';
 import './Payment.css';
 
 const Payment = () => {
@@ -55,7 +56,7 @@ const Payment = () => {
                 <div className="radio-circle"></div>
                 <span>Efectivo al momento de entrega</span>
               </div>
-              <span className="payment-icon">💵</span>
+              <span className="payment-icon"><Banknote size={24} /></span>
             </div>
 
             {/* Tarjeta */}
@@ -67,7 +68,7 @@ const Payment = () => {
                 <div className="radio-circle"></div>
                 <span>Tarjeta de Crédito o Débito</span>
               </div>
-              <span className="payment-icon">💳</span>
+              <span className="payment-icon"><CreditCard size={24} /></span>
             </div>
 
             {/* CC Form shown only if Tarjeta is selected */}

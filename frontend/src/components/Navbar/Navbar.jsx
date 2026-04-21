@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { User, ShoppingCart } from 'lucide-react';
 import './Navbar.css';
 
 const Navbar = ({ onOpenCart }) => {
@@ -18,10 +19,10 @@ const Navbar = ({ onOpenCart }) => {
 
       <div className="nav-actions">
         <Link to="/login" className="login-btn">
-          <span className="user-icon">👤</span> Login
+          <span className="user-icon"><User size={18} /></span> Login
         </Link>
         <button className="cart-btn" onClick={onOpenCart}>
-          🛒
+          <ShoppingCart size={20} />
         </button>
       </div>
     </nav>
