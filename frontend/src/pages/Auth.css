@@ -1,0 +1,180 @@
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1rem;
+  background-color: var(--bg-color); /* Matches the gray background */
+}
+
+.auth-card {
+  background-color: #ffffff;
+  padding: 4rem 3rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 550px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05); /* very subtle drop shadow */
+}
+
+.register-card {
+  max-width: 700px;
+}
+
+.auth-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.auth-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 3rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.form-group-row > div {
+  flex: 1;
+}
+
+.auth-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.auth-form-group label {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #efefef;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.auth-input::placeholder {
+  color: #999;
+}
+
+.auth-forgot {
+  text-align: right;
+  font-size: 0.85rem;
+  margin-top: -0.5rem;
+}
+
+.auth-forgot a {
+  color: #555;
+}
+
+.auth-forgot a:hover {
+  text-decoration: underline;
+}
+
+.auth-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.auth-checkbox-group input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: #000;
+  cursor: pointer;
+}
+
+.auth-checkbox-group label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.auth-btn-primary {
+  background-color: #111;
+  color: #fff;
+  padding: 1.2rem;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  text-align: center;
+}
+
+.auth-btn-primary:hover {
+  background-color: #333;
+}
+
+.auth-divider {
+  border: none;
+  border-top: 2px solid #333;
+  margin: 3rem 0 2rem 0;
+}
+
+.auth-prompt {
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  color: #444;
+}
+
+.auth-btn-secondary {
+  background-color: #a09f9f;
+  color: #fff;
+  padding: 1.2rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  display: block;
+  transition: background-color 0.2s;
+}
+
+.auth-btn-secondary:hover {
+  background-color: #888;
+}
+
+.auth-footer-prompt {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.auth-link {
+  font-weight: 800;
+  color: #111;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .auth-card {
+    padding: 3rem 1.5rem;
+  }
+  .form-group-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

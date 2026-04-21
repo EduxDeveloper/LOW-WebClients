@@ -1,0 +1,138 @@
+.checkout-page {
+  padding: 4rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.checkout-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.checkout-items-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.checkout-item-card {
+  display: flex;
+  border: 1px solid #ddd; /* simple border as mockup shows */
+  border-radius: 4px;
+  padding: 1.5rem;
+  background-color: #fff;
+  gap: 2rem;
+}
+
+.checkout-item-image {
+  width: 150px;
+  height: 180px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.checkout-item-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.checkout-item-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.checkout-item-variant {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.checkout-item-price {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-quantity {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  border-radius: 20px;
+  padding: 0.3rem 1.2rem;
+  gap: 1.2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  align-self: flex-start;
+}
+
+.checkout-quantity button {
+  color: var(--text-light);
+  font-size: 1.2rem;
+}
+
+/* Right Column Summary */
+.checkout-summary-column {
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.summary-title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.summary-divider {
+  border: none;
+  border-top: 2px solid var(--text-dark);
+  margin: 1.5rem 0;
+}
+
+.total-row {
+  font-weight: 700;
+}
+
+.proceed-btn {
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  width: 100%;
+  padding: 1.2rem;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  transition: background-color 0.2s;
+}
+
+.proceed-btn:hover {
+  background-color: #333;
+}
+
+@media (max-width: 900px) {
+  .checkout-content {
+    grid-template-columns: 1fr;
+  }
+}

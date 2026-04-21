@@ -1,0 +1,267 @@
+.page-container {
+  padding: 4rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+/* Reviews Page Styles */
+.reviews-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.reviews-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.write-review-btn {
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  padding: 0.6rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.reviews-summary-block {
+  background-color: #f0f3f4;
+  border-radius: 8px;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem;
+}
+
+.summary-left {
+  text-align: center;
+}
+
+.summary-score {
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.summary-stars {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.summary-count {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.summary-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.rating-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.star-label {
+  width: 40px;
+  font-weight: 600;
+}
+
+.bar-bg {
+  flex: 1;
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background-color: #ffe100;
+  border-radius: 6px;
+}
+
+/* Review Cards */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.review-card {
+  background-color: #f4f8f7; /* Very light subtle tint from mockup */
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.reviewer-name {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.review-date {
+  font-size: 0.9rem;
+  color: #111;
+  font-weight: 600;
+}
+
+.review-rating {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.review-sentiment.positive {
+  color: #1fc969;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.review-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.review-subtitle {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.review-content {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .page-container { padding: 2rem; }
+  .reviews-summary-block {
+    flex-direction: column;
+    gap: 3rem;
+  }
+}
+
+/* Review Form Styles */
+.review-form-section {
+  margin-top: 3rem;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.req {
+  color: red;
+}
+
+.star-rating-input {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 2.5rem;
+  color: #ccc;
+}
+
+.interactive-star {
+  cursor: pointer;
+  transition: color 0.1s;
+}
+
+.interactive-star.filled {
+  color: #555;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #efefef;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.form-input::placeholder, .form-textarea::placeholder {
+  color: #999;
+}
+
+.radio-group {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700 !important;
+  cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+  accent-color: #000;
+  width: 1rem;
+  height: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.submit-review-btn {
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  padding: 1rem 3rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.submit-review-btn:hover {
+  background-color: #333;
+}
+

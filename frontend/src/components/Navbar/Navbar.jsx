@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ onOpenCart }) => {
   return (
     <nav className="navbar">
       <div className="nav-brand">
@@ -17,10 +17,10 @@ const Navbar = () => {
       </ul>
 
       <div className="nav-actions">
-        <button className="login-btn">
+        <Link to="/login" className="login-btn">
           <span className="user-icon">👤</span> Login
-        </button>
-        <button className="cart-btn">
+        </Link>
+        <button className="cart-btn" onClick={onOpenCart}>
           🛒
         </button>
       </div>

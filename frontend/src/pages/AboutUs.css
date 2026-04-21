@@ -1,0 +1,85 @@
+.about-page {
+  padding-bottom: 4rem;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+/* Nuestra Historia Section */
+.history-section {
+  display: flex;
+  gap: 4rem;
+  margin: 5rem 0;
+  align-items: center;
+}
+
+.history-content {
+  flex: 1;
+}
+
+.history-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.history-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.history-image-container {
+  flex: 1;
+}
+
+.history-image {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+
+/* Nuestros Valores Section */
+.values-section {
+  margin: 5rem 0;
+  text-align: center;
+}
+
+.values-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Mision y Vision Section */
+.mission-vision-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 5rem 0;
+}
+
+@media (max-width: 900px) {
+  .history-section {
+    flex-direction: column;
+  }
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+  .mission-vision-section {
+    grid-template-columns: 1fr;
+  }
+  .about-container {
+    padding: 0 2rem;
+  }
+}
