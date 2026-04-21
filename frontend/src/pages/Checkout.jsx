@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { DEFAULT_IMAGE } from '../utils/constants';
 import './Checkout.css';
 
@@ -68,7 +69,7 @@ const Checkout = () => {
             <span className="summary-value">$179.00</span>
           </div>
 
-          <button className="proceed-btn">Proceder al pago</button>
+          <Link to="/pago" className="proceed-btn" style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}>Proceder al pago</Link>
         </div>
 
       </div>

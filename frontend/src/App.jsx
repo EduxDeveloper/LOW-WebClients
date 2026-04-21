@@ -12,6 +12,7 @@ import Terms from './pages/Terms';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Checkout from './pages/Checkout';
+import Payment from './pages/Payment';
 import './App.css';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Register />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/pago" element={<Payment />} />
             <Route path="/producto/:id" element={<ProductDetail />} />
           </Routes>
         </main>
