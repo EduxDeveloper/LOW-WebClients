@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import { DEFAULT_IMAGE } from '../../utils/constants';
+import fondoImg from '../../images/Fondo.png';
 import './HeroSection.css';
 
-const HeroSection = ({ 
-  title = "LØØM & WΞFT", 
-  subtitle = "Nuevas colecciones disponibles", 
-  buttonText = "Ver Prendas", 
+const HeroSection = ({
+  title = "LØØM & WΞFT",
+  subtitle = "Nuevas colecciones disponibles",
+  buttonText = "Ver Prendas",
   buttonLink = "/tienda",
   showButton = true,
-  image = DEFAULT_IMAGE
+  image = fondoImg
 }) => {
   return (
     <section className="hero-section" style={{ backgroundImage: `url(${image})` }}>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { DEFAULT_IMAGE } from '../../utils/constants';
+import prendaImg from '../../images/Prenda.png';
 import './CategoryCards.css';
 
 const categories = [
@@ -14,7 +14,7 @@ const CategoryCards = () => {
       <h2 className="section-title">Categorías</h2>
       <div className="categories-grid">
         {categories.map((cat) => (
-          <Link to={cat.link} key={cat.id} className="category-card" style={{ backgroundImage: `url(${DEFAULT_IMAGE})` }}>
+          <Link to={cat.link} key={cat.id} className="category-card" style={{ backgroundImage: `url(${prendaImg})` }}>
             <div className="category-overlay"></div>
             <h3 className="category-title">
               {cat.title.split('').map((char, index) => (

@@ -1,14 +1,34 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import './Auth.css';
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await Swal.fire({
+      title: '¡Bienvenido de vuelta!',
+      text: 'Has iniciado sesión correctamente.',
+      icon: 'success',
+      confirmButtonText: 'Continuar',
+      background: '#111',
+      color: '#fff',
+      confirmButtonColor: '#ffffff',
+      customClass: {
+        confirmButton: 'swal-confirm-dark',
+      },
+    });
+    navigate('/');
+  };
+
   return (
     <div className="auth-page">
       <div className="auth-card">
         <h1 className="auth-title">Iniciar Sesión</h1>
-        <p className="auth-subtitle">Bienvenido a LØØM & WEFT</p>
+        <p className="auth-subtitle">Bienvenido a LØØM &amp; WEFT</p>
 
-        <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+        <form className="auth-form" onSubmit={handleSubmit}>
           <div className="auth-form-group">
             <label>Correo Electronico</label>
             <input type="email" placeholder="correoElectronico@email.com" className="auth-input" />

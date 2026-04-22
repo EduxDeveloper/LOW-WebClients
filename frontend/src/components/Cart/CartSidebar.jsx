@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { DEFAULT_IMAGE } from '../../utils/constants';
+import prendaImg from '../../images/Prenda.png';
 import './CartSidebar.css';
 
 const CartSidebar = ({ isOpen, onClose }) => {
@@ -29,7 +29,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
           {/* Example Item */}
           <div className="cart-item">
             <div className="cart-item-image">
-              <img src={DEFAULT_IMAGE} alt="Elixir Spider" />
+              <img src={prendaImg} alt="Elixir Spider" />
             </div>
             <div className="cart-item-details">
               <h4 className="cart-item-title">Elixir Spider Tribal Zip-Up</h4>

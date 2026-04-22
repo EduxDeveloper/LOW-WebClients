@@ -1,14 +1,34 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import './Auth.css';
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await Swal.fire({
+      title: '¡Cuenta creada!',
+      text: 'Tu cuenta ha sido creada exitosamente. ¡Bienvenido a la familia!',
+      icon: 'success',
+      confirmButtonText: 'Ir al inicio',
+      background: '#111',
+      color: '#fff',
+      confirmButtonColor: '#ffffff',
+      customClass: {
+        confirmButton: 'swal-confirm-dark',
+      },
+    });
+    navigate('/');
+  };
+
   return (
     <div className="auth-page">
       <div className="auth-card register-card">
         <h1 className="auth-title">Crear Cuenta</h1>
         <p className="auth-subtitle">Se parte de la comunidad de LØW</p>
 
-        <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+        <form className="auth-form" onSubmit={handleSubmit}>
           
           <div className="form-group-row">
             <div className="auth-form-group">

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { DEFAULT_IMAGE } from '../../utils/constants';
+import prendaImg from '../../images/Prenda.png';
 import './ProductCards.css';
 
 const products = [
@@ -20,7 +20,7 @@ const ProductCards = () => {
         {products.map((product) => (
           <div key={product.id} className="product-card">
             <div className="product-image-container">
-              <img src={DEFAULT_IMAGE} alt={product.name} className="product-image" />
+              <img src={prendaImg} alt={product.name} className="product-image" />
             </div>
             <div className="product-info">
               <h4 className="product-name">{product.name}</h4>

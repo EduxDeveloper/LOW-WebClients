@@ -1,7 +1,7 @@
 import HeroSection from '../components/HeroSection/HeroSection';
 import ValueCard from '../components/Cards/ValueCard';
 import InfoBlock from '../components/InfoBlock/InfoBlock';
-import { DEFAULT_IMAGE } from '../utils/constants';
+import prendaImg from '../images/Prenda.png';
 import './AboutUs.css';
 
 const AboutUs = () => {
@@ -29,7 +29,7 @@ const AboutUs = () => {
             </p>
           </div>
           <div className="history-image-container">
-            <img src={DEFAULT_IMAGE} alt="Nuestra historia" className="history-image" />
+            <img src={prendaImg} alt="Nuestra historia" className="history-image" />
           </div>
         </section>
 

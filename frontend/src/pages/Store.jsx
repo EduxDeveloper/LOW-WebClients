@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { DEFAULT_IMAGE } from '../utils/constants';
+import prendaImg from '../images/Prenda.png';
 import '../components/ProductCards/ProductCards.css'; // Reusing some product card styles
 import './Store.css';
 
@@ -15,7 +15,7 @@ const storeProducts = [
 
 const Store = () => {
   const location = useLocation();
-  
+
   const getInitialFilter = () => {
     if (location.pathname.includes('mujer')) return 'Mujer';
     if (location.pathname.includes('hombre')) return 'Hombre';
@@ -30,8 +30,8 @@ const Store = () => {
 
   const filters = ['Todo', 'Hombre', 'Mujer'];
 
-  const filteredProducts = activeFilter === 'Todo' 
-    ? storeProducts 
+  const filteredProducts = activeFilter === 'Todo'
+    ? storeProducts
     : storeProducts.filter(p => p.category === activeFilter || p.category === 'Todo'); // 'Todo' category shows up everywhere for demo
 
   return (
@@ -39,7 +39,7 @@ const Store = () => {
       <div className="store-filters">
         <div className="filter-btn label">Filtrar por</div>
         {filters.map(f => (
-          <button 
+          <button
             key={f}
             className={`filter-btn ${activeFilter === f ? 'active' : 'inactive'}`}
             onClick={() => setActiveFilter(f)}
@@ -53,7 +53,7 @@ const Store = () => {
         {filteredProducts.map((product) => (
           <Link to={`/producto/${product.id}`} key={product.id} className="product-card">
             <div className="product-image-container">
-              <img src={DEFAULT_IMAGE} alt={product.name} className="product-image" />
+              <img src={prendaImg} alt={product.name} className="product-image" />
             </div>
             <div className="product-info">
               <h4 className="product-name">{product.name}</h4>

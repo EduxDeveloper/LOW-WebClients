@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { DEFAULT_IMAGE } from '../utils/constants';
+import prendaImg from '../images/Prenda.png';
 import { PrimaryButton, SecondaryButton } from '../components/Buttons/Buttons';
 import './ProductDetail.css';
 
@@ -28,7 +28,7 @@ const ProductDetail = () => {
         
         <div className="product-detail-content">
           <div className="product-image-section">
-            <img src={DEFAULT_IMAGE} alt="Product" className="detail-image" />
+            <img src={prendaImg} alt="Product" className="detail-image" />
           </div>
 
           <div className="product-info-section">

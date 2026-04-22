@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { DEFAULT_IMAGE } from '../utils/constants';
+import prendaImg from '../images/Prenda.png';
 import './Checkout.css';
 
 const Checkout = () => {
@@ -31,7 +31,7 @@ const Checkout = () => {
           {items.map(item => (
             <div key={item.id} className="checkout-item-card">
               <div className="checkout-item-image">
-                <img src={DEFAULT_IMAGE} alt={item.title} />
+                <img src={prendaImg} alt={item.title} />
               </div>
               <div className="checkout-item-details">
                 <h2 className="checkout-item-title">{item.title}</h2>
