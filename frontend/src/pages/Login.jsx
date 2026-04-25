@@ -12,12 +12,9 @@ const Login = () => {
       text: 'Has iniciado sesión correctamente.',
       icon: 'success',
       confirmButtonText: 'Continuar',
-      background: '#111',
-      color: '#fff',
-      confirmButtonColor: '#ffffff',
-      customClass: {
-        confirmButton: 'swal-confirm-dark',
-      },
+      background: '#fff',
+      color: '#000',
+      confirmButtonColor: '#111',
     });
     navigate('/');
   };

@@ -12,12 +12,9 @@ const Register = () => {
       text: 'Tu cuenta ha sido creada exitosamente. ¡Bienvenido a la familia!',
       icon: 'success',
       confirmButtonText: 'Ir al inicio',
-      background: '#111',
-      color: '#fff',
-      confirmButtonColor: '#ffffff',
-      customClass: {
-        confirmButton: 'swal-confirm-dark',
-      },
+      background: '#fff',
+      color: '#000',
+      confirmButtonColor: '#111',
     });
     navigate('/');
   };
