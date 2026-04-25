@@ -205,5 +205,12 @@
 @media (max-width: 900px) {
   .payment-content {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .payment-page {
+    padding: 2rem 1.5rem;
+  }
+  .form-row {
+    flex-direction: column;
   }
 }

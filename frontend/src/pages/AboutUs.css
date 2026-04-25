@@ -72,14 +72,16 @@
 @media (max-width: 900px) {
   .history-section {
     flex-direction: column;
+    margin: 3rem 0;
   }
   .values-grid {
     grid-template-columns: 1fr;
   }
   .mission-vision-section {
     grid-template-columns: 1fr;
+    margin: 3rem 0;
   }
   .about-container {
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
 }

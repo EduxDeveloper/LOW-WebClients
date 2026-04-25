@@ -99,8 +99,12 @@
 @media (max-width: 900px) {
   .contact-content {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
   .contact-page {
-    padding: 3rem 2rem;
+    padding: 2rem 1.5rem;
+  }
+  .contact-form-col {
+    padding: 2rem 1.5rem;
   }
 }

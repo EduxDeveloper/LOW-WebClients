@@ -104,7 +104,8 @@
 }
 
 .review-card {
-  background-color: #f4f8f7; /* Very light subtle tint from mockup */
+  background-color: #f4f8f7;
+  /* Very light subtle tint from mockup */
   border-radius: 8px;
   padding: 2rem;
 }
@@ -158,10 +159,24 @@
 }
 
 @media (max-width: 768px) {
-  .page-container { padding: 2rem; }
+  .page-container {
+    padding: 2rem 1.5rem;
+  }
+
   .reviews-summary-block {
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .reviews-header-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .summary-score {
+    font-size: 4rem;
   }
 }
 
@@ -208,7 +223,8 @@
   color: #555;
 }
 
-.form-input, .form-textarea {
+.form-input,
+.form-textarea {
   width: 100%;
   padding: 1rem;
   border-radius: 8px;
@@ -222,7 +238,8 @@
   resize: vertical;
 }
 
-.form-input::placeholder, .form-textarea::placeholder {
+.form-input::placeholder,
+.form-textarea::placeholder {
   color: #999;
 }
 
@@ -264,4 +281,3 @@
 .submit-review-btn:hover {
   background-color: #333;
 }
-

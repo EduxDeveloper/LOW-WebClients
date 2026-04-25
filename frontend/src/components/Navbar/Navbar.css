@@ -63,11 +63,47 @@
   font-size: 1.2rem;
 }
 
+.mobile-menu-btn {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .navbar {
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
   }
   .nav-links {
-    display: none; /* simple mobile hide for now */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--nav-bg);
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    gap: 1.5rem;
+    clip-path: circle(0% at 100% 0);
+    transition: clip-path 0.4s ease-in-out;
+  }
+  
+  .nav-links.active {
+    clip-path: circle(150% at 100% 0);
+  }
+
+  .nav-links li a {
+    font-size: 1.2rem;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    color: var(--text-light);
+  }
+  
+  .login-btn {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .login-btn .user-icon {
+    display: none;
   }
 }
