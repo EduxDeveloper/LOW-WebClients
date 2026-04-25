@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import prendaImg from '../../images/Prenda.png';
+import hombreImg from '../../images/HOMBRE.png';
+import mujerImg from '../../images/MUJER.png';
+import conjuntosImg from '../../images/CONJUNTOS.png';
 import './CategoryCards.css';
 
 const categories = [
-  { id: 1, title: 'HOMBRE', link: '/hombre' },
-  { id: 2, title: 'MUJER', link: '/mujer' },
-  { id: 3, title: 'CONJUNTOS', link: '/conjuntos' },
+  { id: 1, title: 'HOMBRE', link: '/hombre', img: hombreImg },
+  { id: 2, title: 'MUJER', link: '/mujer', img: mujerImg },
+  { id: 3, title: 'CONJUNTOS', link: '/conjuntos', img: conjuntosImg },
 ];
 
 const CategoryCards = () => {
@@ -14,7 +16,7 @@ const CategoryCards = () => {
       <h2 className="section-title">Categorías</h2>
       <div className="categories-grid">
         {categories.map((cat) => (
-          <Link to={cat.link} key={cat.id} className="category-card" style={{ backgroundImage: `url(${prendaImg})` }}>
+          <Link to={cat.link} key={cat.id} className="category-card" style={{ backgroundImage: `url(${cat.img})` }}>
             <div className="category-overlay"></div>
             <h3 className="category-title">
               {cat.title.split('').map((char, index) => (

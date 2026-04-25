@@ -17,10 +17,10 @@ El proyecto nació como una idea de negocio real combinada con un reto académic
 Somos 4 personas detrás de esto:
 
 
-**Salvador Eduardo Martínez Zúniga** 
-**Oscar Alejandro Pérez García**
-**Francisco Samuel García Cruz**  
-**Mauricio José Castro García** 
+- **Salvador Eduardo Martínez Zúniga** 
+- **Oscar Alejandro Pérez García**
+- **Francisco Samuel García Cruz**  
+- **Mauricio José Castro García** 
 
 
 

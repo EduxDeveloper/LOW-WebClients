@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import prendaImg from '../images/Prenda.png';
+import ropa6 from '../images/ROPA (6).png';
+import ropa5 from '../images/ROPA (5).png';
 import './Checkout.css';
 
 const Checkout = () => {
@@ -10,34 +11,36 @@ const Checkout = () => {
       color: "Negro",
       size: "XL",
       price: 109.00,
-      qty: 1
+      qty: 1,
+      img: ropa6
     },
     {
       id: 2,
-      title: "Elixir Baggy Jeans",
+      title: "Elixir Hoodie",
       color: "Negro",
       size: "XL",
       price: 70.00,
-      qty: 1
+      qty: 1,
+      img: ropa5
     }
   ];
 
   return (
     <div className="page-container checkout-page">
       <div className="checkout-content">
-        
+
         {/* Left Column: Items */}
         <div className="checkout-items-column">
           {items.map(item => (
             <div key={item.id} className="checkout-item-card">
               <div className="checkout-item-image">
-                <img src={prendaImg} alt={item.title} />
+                <img src={item.img} alt={item.title} />
               </div>
               <div className="checkout-item-details">
                 <h2 className="checkout-item-title">{item.title}</h2>
                 <p className="checkout-item-variant">Color: {item.color} || Talla {item.size}</p>
                 <p className="checkout-item-price">${item.price.toFixed(2)}</p>
-                
+
                 <div className="checkout-quantity">
                   <button>−</button>
                   <span>{item.qty}</span>
@@ -51,12 +54,12 @@ const Checkout = () => {
         {/* Right Column: Summary */}
         <div className="checkout-summary-column">
           <h2 className="summary-title">Resumen del pedido</h2>
-          
+
           <div className="summary-row">
             <span className="summary-label">Subtotal</span>
             <span className="summary-value">$179.00</span>
           </div>
-          
+
           <div className="summary-row">
             <span className="summary-label">Envio</span>
             <span className="summary-value">Gratis</span>

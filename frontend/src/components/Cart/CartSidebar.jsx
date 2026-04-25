@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import prendaImg from '../../images/Prenda.png';
+import prendaImg from '../../images/ROPA (6).png';
 import './CartSidebar.css';
 
 const CartSidebar = ({ isOpen, onClose }) => {

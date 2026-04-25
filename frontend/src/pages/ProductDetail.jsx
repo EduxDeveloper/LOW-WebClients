@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import prendaImg from '../images/Prenda.png';
+import prendaImg from '../images/ROPA (6).png';
 import { PrimaryButton, SecondaryButton } from '../components/Buttons/Buttons';
 import './ProductDetail.css';
 

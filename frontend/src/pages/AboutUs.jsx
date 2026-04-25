@@ -1,7 +1,7 @@
 import HeroSection from '../components/HeroSection/HeroSection';
 import ValueCard from '../components/Cards/ValueCard';
 import InfoBlock from '../components/InfoBlock/InfoBlock';
-import prendaImg from '../images/Prenda.png';
+import prendaImg from '../images/NUESTRA HISTORIA.png';
 import './AboutUs.css';
 
 const AboutUs = () => {
