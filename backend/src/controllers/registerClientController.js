@@ -111,7 +111,7 @@ registerClientController.verifyCode = async (req, res) => {
         //extraer la información del token
         const decoded = jsonwebtoken.verify(token, config.JWT.secret);
 
-        const { randomCode, name, lastName, email, password, isVerified, phone, address, loginAttempts, timeOut } = decoded;
+        const { randomCode, name, lastName, email, password, birthdate, isVerified, phone, address, loginAttempts, timeOut } = decoded;
 
         //3. Comparar el código de verificación con el código generado
         if (verificationCodeRequest !== randomCode) {
