@@ -9,6 +9,7 @@ import registerAdminRoutes from "./src/routes/registerAdmin.js"
 import loginAdminRoutes from "./src/routes/loginAdmin.js"
 import registerClientRoutes from "./src/routes/registerClient.js"
 import loginClientRoutes from "./src/routes/loginClient.js"
+import registerEmployeeRoutes from "./src/routes/registerEmployee.js"
 
 //creo una constante app que es una instancia de express, esto me permite usar todas las funcionalidades de express para crear mi servidor y manejar rutas, middlewares, etc.
 
@@ -26,9 +27,14 @@ app.use(cookieParser());
 app.use(express.json());
 
 //rutas
+
+//admin
 app.use("/api/registerAdmin", registerAdminRoutes);
 app.use("/api/loginAdmin", loginAdminRoutes);
+//client
 app.use("/api/registerClient", registerClientRoutes)
 app.use("/api/loginClient", loginClientRoutes)
+//employee
+app.use("/api/registerEmployee", registerEmployeeRoutes)
 
 export default app;
