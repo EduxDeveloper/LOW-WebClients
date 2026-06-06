@@ -18,8 +18,9 @@ const employeeSchema = new Schema({
     address: {type: String},
     phone: {type: String},
     salary: {type: Number},
-    image: {type: String},
-    public_id: {type: String}
+    isVerified: {type: Boolean},
+    loginAttempts: {type: Number},
+    timeOut: {type: Date}
 }, {
     timestamps: true,
     strict: false
