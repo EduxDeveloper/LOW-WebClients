@@ -23,7 +23,7 @@ generalReviewController.createGeneralReview = async (req, res) => {
 
 generalReviewController.getGeneralReviews = async (req, res) => {
     try {
-        const generalReviews = await generalReviewModel.find();
+        const generalReviews = await generalReviewModel.find().populate("client_id", "name lastName");
         res.status(200).json(generalReviews);
     } catch (error) {
         console.log("Error fetching general reviews:", error);

@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import prendaImg from '../../images/ROPA (6).png';
+import { CartContext } from '../../context/CartContext';
 import './CartSidebar.css';
 
 const CartSidebar = ({ isOpen, onClose }) => {
+  const { cartItems, removeFromCart, updateQuantity, cartTotal } = useContext(CartContext);
+
   if (!isOpen) return null;
 
   return (
@@ -26,26 +29,31 @@ const CartSidebar = ({ isOpen, onClose }) => {
         <hr className="cart-divider" />
 
         <div className="cart-items-container">
-          {/* Example Item */}
-          <div className="cart-item">
-            <div className="cart-item-image">
-              <img src={prendaImg} alt="Elixir Spider" />
-            </div>
-            <div className="cart-item-details">
-              <h4 className="cart-item-title">Elixir Spider Tribal Zip-Up</h4>
-              <p className="cart-item-price">$109.00</p>
-              
-              <div className="cart-item-controls">
-                <span className="cart-item-size">S</span>
-                <div className="cart-quantity-selector">
-                  <button>−</button>
-                  <span>1</span>
-                  <button>+</button>
+          {cartItems.length === 0 ? (
+            <p className="cart-empty-msg" style={{textAlign: "center", marginTop: "2rem"}}>Tu carrito está vacío.</p>
+          ) : (
+            cartItems.map((item, index) => (
+              <div key={`${item.product._id}-${item.size}-${index}`} className="cart-item">
+                <div className="cart-item-image">
+                  <img src={item.product.images && item.product.images.length > 0 ? item.product.images[0].image : ''} alt={item.product.name} />
                 </div>
-                <button className="cart-item-remove">Quitar</button>
+                <div className="cart-item-details">
+                  <h4 className="cart-item-title">{item.product.name}</h4>
+                  <p className="cart-item-price">${item.product.price.toFixed(2)}</p>
+                  
+                  <div className="cart-item-controls">
+                    <span className="cart-item-size">{item.size}</span>
+                    <div className="cart-quantity-selector">
+                      <button onClick={() => updateQuantity(item.product._id, item.size, item.quantity - 1)}>−</button>
+                      <span>{item.quantity}</span>
+                      <button onClick={() => updateQuantity(item.product._id, item.size, item.quantity + 1)}>+</button>
+                    </div>
+                    <button className="cart-item-remove" onClick={() => removeFromCart(item.product._id, item.size)}>Quitar</button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            ))
+          )}
         </div>
 
         <div className="cart-footer">
@@ -56,7 +64,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
           <Link to="/checkout" className="cart-checkout-btn" onClick={onClose}>
             <span>Finalizar Compra</span>
             <span className="cart-checkout-dot">•</span>
-            <span>$109.00</span>
+            <span>${cartTotal.toFixed(2)}</span>
           </Link>
         </div>
 

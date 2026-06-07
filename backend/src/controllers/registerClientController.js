@@ -124,12 +124,12 @@ registerClientController.verifyCode = async (req, res) => {
             lastName,
             email,
             password,
-            birthdate,
+            birthdate: new Date(birthdate).getTime(), // Convert string "YYYY-MM-DD" to timestamp Number
             phone,
             address,
             isVerified: true,
-            image: req.file,
-            public_id: req.file.filename,
+            image: req.file ? req.file.path : undefined,
+            public_id: req.file ? req.file.filename : undefined,
         });
 
         await newClient.save();

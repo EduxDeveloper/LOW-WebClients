@@ -9,6 +9,7 @@ import registerAdminRoutes from "./src/routes/registerAdmin.js"
 import loginAdminRoutes from "./src/routes/loginAdmin.js"
 import registerClientRoutes from "./src/routes/registerClient.js"
 import loginClientRoutes from "./src/routes/loginClient.js"
+import recoverClientPasswordRoutes from "./src/routes/recoverClientPassword.js"
 import registerEmployeeRoutes from "./src/routes/registerEmployee.js"
 import loginEmployeeRoutes from "./src/routes/loginEmployee.js"
 import productRoutes from "./src/routes/product.js"
@@ -40,6 +41,7 @@ app.use("/api/loginAdmin", loginAdminRoutes);
 //client
 app.use("/api/registerClient", registerClientRoutes)
 app.use("/api/loginClient", loginClientRoutes)
+app.use("/api/recoverClientPassword", recoverClientPasswordRoutes)
 //employee
 app.use("/api/registerEmployee", registerEmployeeRoutes)
 app.use("/api/loginEmployee", loginEmployeeRoutes)
@@ -53,5 +55,13 @@ app.use("/api/productCustom", productCustomRoutes);
 app.use("/api/carts", cartRoutes);
 //generalReview
 app.use("/api/generalReviews", generalReviewRoutes);
+
+// Global Error Handler para evitar respuestas HTML con [object Object]
+app.use((err, req, res, next) => {
+    res.status(500).json({ 
+        message: "Ocurrió un error en el servidor (Middleware)", 
+        error: err.message || err.toString() 
+    });
+});
 
 export default app;

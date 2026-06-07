@@ -1,25 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import ropa1 from '../images/ROPA (1).png';
-import ropa2 from '../images/ROPA (2).png';
-import ropa3 from '../images/ROPA (3).png';
-import ropa4 from '../images/ROPA (4).png';
-import ropa5 from '../images/ROPA (5).png';
-import ropa6 from '../images/ROPA (6).png';
 import '../components/ProductCards/ProductCards.css'; // Reusing some product card styles
 import './Store.css';
 
-const storeProducts = [
-  { id: 1, name: 'NFL Spider Blue Jersey', price: '$81.00', category: 'Hombre', img: ropa1 },
-  { id: 2, name: 'NFL Spider Black Jersey', price: '$81.00', category: 'Hombre', img: ropa2 },
-  { id: 3, name: 'Black Leather Fur Detachable Jacket', price: '$181.00', category: 'Mujer', img: ropa3 },
-  { id: 4, name: 'White Leather Fur Detachable Jacket', price: '$181.00', category: 'Mujer', img: ropa4 },
-  { id: 5, name: 'SpiderWeb Black Seams Jeans', price: '$157.00', category: 'Hombre', img: ropa5 },
-  { id: 6, name: 'Black Cross Mohair Zip-Up', price: '$109.00', category: 'Todo', img: ropa6 },
-];
-
 const Store = () => {
   const location = useLocation();
+  const [storeProducts, setStoreProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getInitialFilter = () => {
     if (location.pathname.includes('mujer')) return 'Mujer';
@@ -33,11 +20,33 @@ const Store = () => {
     setActiveFilter(getInitialFilter());
   }, [location.pathname]);
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/api/products');
+        if (response.ok) {
+          const data = await response.json();
+          setStoreProducts(data);
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
   const filters = ['Todo', 'Hombre', 'Mujer'];
 
   const filteredProducts = activeFilter === 'Todo'
     ? storeProducts
-    : storeProducts.filter(p => p.category === activeFilter || p.category === 'Todo'); // 'Todo' category shows up everywhere for demo
+    : storeProducts.filter(p => p.sub_type === activeFilter || p.product_type === activeFilter || activeFilter === 'Todo'); 
+    // We filter by sub_type or product_type assuming the backend uses these for 'Hombre' / 'Mujer'
+
+  if (loading) {
+    return <div className="store-page" style={{textAlign: "center", marginTop: "5rem"}}>Cargando productos...</div>;
+  }
 
   return (
     <div className="store-page">
@@ -56,13 +65,13 @@ const Store = () => {
 
       <div className="store-grid">
         {filteredProducts.map((product) => (
-          <Link to={`/producto/${product.id}`} key={product.id} className="product-card">
+          <Link to={`/producto/${product._id}`} key={product._id} className="product-card">
             <div className="product-image-container">
-              <img src={product.img} alt={product.name} className="product-image" />
+              <img src={product.images && product.images.length > 0 ? product.images[0].image : ''} alt={product.name} className="product-image" />
             </div>
             <div className="product-info">
               <h4 className="product-name">{product.name}</h4>
-              <p className="product-price">{product.price}</p>
+              <p className="product-price">${product.price.toFixed(2)}</p>
             </div>
           </Link>
         ))}

@@ -15,6 +15,7 @@ import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import Checkout from './pages/Checkout';
 import Payment from './pages/Payment';
+import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="app-container">
         <Navbar onOpenCart={() => setIsCartOpen(true)} />
         <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />

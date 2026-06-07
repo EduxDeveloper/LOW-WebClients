@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb://localhost:27017/loomDB")
+mongoose.connect("tucadenademongocompas")
 
 //comprobamos la conexion a la base de datos
 
@@ -17,5 +17,5 @@ connection.once("open", () => {
 });
 
 connection.on("error", (error) => {
-    console.error("Error de conexión a MongoDB:"+ error);
+    console.error("Error de conexión a MongoDB:" + error);
 });

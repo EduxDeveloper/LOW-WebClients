@@ -1,18 +1,15 @@
-import plantsModel from "../models/supplier.js";
-
+import supplierModel from "../models/supplier.js";
 import { v2 as cloudinary } from "cloudinary";
-import { config } from "../../config.js";
 
-// ARRAY de funciones
 const supplierController = {};
 
 //GET
 supplierController.getAll = async (req, res) => {
     try {
-        const suppliers = await plantsModel.find();
+        const suppliers = await supplierModel.find();
         res.status(200).json(suppliers);
     } catch (error) {
-        console.log("error"+ error);
+        console.log("error", error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
@@ -20,23 +17,23 @@ supplierController.getAll = async (req, res) => {
 //POST
 supplierController.create = async (req, res) => {
     try {
-        const { name, care, size, price, stock, product_id } = req.body;
+        const { name, email, phone, address, isVerified } = req.body;
 
-        const newSupplier = new plantsModel({
+        const newSupplier = new supplierModel({
             name,
             email,
             phone,
-            image: req.file.path,
+            img: req.file ? req.file.path : undefined,
             address,
-            isVerified: true,
-            public_id: req.file.filename,
+            isVerified: isVerified === 'true' || isVerified === true,
+            public_id: req.file ? req.file.filename : undefined,
         });
         await newSupplier.save();
 
         res.status(201).json({ message: 'Supplier created successfully', supplier: newSupplier });
     } catch (error) {
-        console.log("error"+ error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        console.log("error", error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
 };
 
@@ -44,19 +41,23 @@ supplierController.create = async (req, res) => {
 supplierController.delete = async (req, res) => {
     try {
         const { id } = req.params;
-        const suppliersToDelete = await plantsModel.findById(id);
+        const supplierToDelete = await supplierModel.findById(id);
 
-        if (!suppliersToDelete) {
+        if (!supplierToDelete) {
             return res.status(404).json({ message: 'Supplier not found' });
         }
+        
         // Eliminar la imagen de Cloudinary
-        await cloudinary.uploader.destroy(plantsDelete.public_id);
+        if (supplierToDelete.public_id) {
+            await cloudinary.uploader.destroy(supplierToDelete.public_id);
+        }
+        
         // Eliminar el documento de la base de datos
-        await postModel.findByIdAndDelete(id);
-        res.status(200).json({ message: 'Plants deleted successfully' });
+        await supplierModel.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Supplier deleted successfully' });
     } catch (error) {
-        console.log("error"+ error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        console.log("error", error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
 };
 
@@ -64,31 +65,40 @@ supplierController.delete = async (req, res) => {
 supplierController.update = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, care, size, price, stock, product_id} = req.body;
-        const suppliersToUpdate = await plantsModel.findById(id);
-        if (!suppliersToUpdate) {
+        const { name, email, phone, address, isVerified } = req.body;
+        
+        const supplierToUpdate = await supplierModel.findById(id);
+        if (!supplierToUpdate) {
             return res.status(404).json({ message: 'Supplier not found' });
         }
        
+        let updatedData = {
+            name,
+            email,
+            phone,
+            address,
+            isVerified: isVerified === 'true' || isVerified === true
+        };
+
         //si viene alguna imagen
-        if(req.file){
+        if (req.file) {
             //eliminar la imagen anterior
-            await cloudinary.uploader.destroy(postToUpdate.public_id)
+            if (supplierToUpdate.public_id) {
+                await cloudinary.uploader.destroy(supplierToUpdate.public_id);
+            }
             
             //guardar la nueva imagen
-            updatedData.image = req.file.path;
+            updatedData.img = req.file.path;
             updatedData.public_id = req.file.filename;
         }
 
         //actualizo en la base de datos
-        await candleModel.findByIdAndUpdate(req.params.id,
-            updatedData,
-            {new: true});
+        await supplierModel.findByIdAndUpdate(id, updatedData, { new: true });
 
-        return res.status(200).json({message: "Plants updated"})
+        return res.status(200).json({ message: "Supplier updated successfully" });
     } catch (error) {
-        console.log("error"+ error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        console.log("error", error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
 };
 

@@ -14,7 +14,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "Loom&Weft", // Carpeta en Cloudinary donde se guardarán las imágenes
+    folder: "LoomAndWeft", // Carpeta en Cloudinary donde se guardarán las imágenes
     allowed_formats: ["jpg", "jpeg", "png", "gif", "pdf"], // Formatos permitidos
   },
 });
