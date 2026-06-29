@@ -1,11 +1,13 @@
 import {Schema, model} from "mongoose";
 
-const suplierSchema = new Schema({
+const supplierSchema = new Schema({
     name: { type: String},
     email: { type: String},
     phone: {type: String},
-    img: { type: String},
+    image: { type: String},
+    public_id: { type: String},
     address: { type: String},
+    company: { type: String},
     isVerified: { type: Boolean},
 
 },{
@@ -13,4 +15,4 @@ const suplierSchema = new Schema({
     strict: false
 });
 
-export default model("Suppliers", suplierSchema);
+export default model("Suppliers", supplierSchema);
