@@ -128,8 +128,8 @@ registerClientController.verifyCode = async (req, res) => {
             phone,
             address,
             isVerified: true,
-            image: req.file,
-            public_id: req.file.filename,
+            image: req.file ? req.file.path : "",
+            public_id: req.file ? req.file.filename : "",
         });
 
         await newClient.save();

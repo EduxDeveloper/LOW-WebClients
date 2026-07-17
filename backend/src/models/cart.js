@@ -25,6 +25,7 @@ const cartSchema = new Schema({
             ref: "ProductCustom",
         },
         quantity: {type: Number},
+        size: {type: String},
 
         subtotal: {type: Number}
     }],

@@ -1,29 +1,28 @@
-import { Link } from 'react-router-dom';
-import ropa6 from '../images/ROPA (6).png';
-import ropa5 from '../images/ROPA (5).png';
+import { useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { CartContext } from '../context/CartContext';
+import { AuthContext } from '../context/AuthContext';
 import './Checkout.css';
 
 const Checkout = () => {
-  const items = [
-    {
-      id: 1,
-      title: "Elixir Spider Tribal Zip-Up",
-      color: "Negro",
-      size: "XL",
-      price: 109.00,
-      qty: 1,
-      img: ropa6
-    },
-    {
-      id: 2,
-      title: "Elixir Hoodie",
-      color: "Negro",
-      size: "XL",
-      price: 70.00,
-      qty: 1,
-      img: ropa5
+  const { cartItems, cartTotal, updateQuantity, removeFromCart } = useContext(CartContext);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      Swal.fire({
+        title: '¡Atención!',
+        text: 'Inicia sesión para finalizar tu compra.',
+        icon: 'warning',
+        confirmButtonText: 'Ir a Login',
+        confirmButtonColor: '#111'
+      }).then(() => {
+        navigate('/login');
+      });
     }
-  ];
+  }, [user, navigate]);
 
   return (
     <div className="page-container checkout-page">
@@ -31,24 +30,29 @@ const Checkout = () => {
 
         {/* Left Column: Items */}
         <div className="checkout-items-column">
-          {items.map(item => (
-            <div key={item.id} className="checkout-item-card">
-              <div className="checkout-item-image">
-                <img src={item.img} alt={item.title} />
-              </div>
-              <div className="checkout-item-details">
-                <h2 className="checkout-item-title">{item.title}</h2>
-                <p className="checkout-item-variant">Color: {item.color} || Talla {item.size}</p>
-                <p className="checkout-item-price">${item.price.toFixed(2)}</p>
+          {cartItems.length === 0 ? (
+            <p>No tienes productos en tu carrito.</p>
+          ) : (
+            cartItems.map((item, index) => (
+              <div key={`${item.product._id}-${item.size}-${index}`} className="checkout-item-card">
+                <div className="checkout-item-image">
+                  <img src={item.product.images && item.product.images.length > 0 ? item.product.images[0].image : ''} alt={item.product.name} />
+                </div>
+                <div className="checkout-item-details">
+                  <h2 className="checkout-item-title">{item.product.name}</h2>
+                  <p className="checkout-item-variant">Talla {item.size}</p>
+                  <p className="checkout-item-price">${item.product.price.toFixed(2)}</p>
 
-                <div className="checkout-quantity">
-                  <button>−</button>
-                  <span>{item.qty}</span>
-                  <button>+</button>
+                  <div className="checkout-quantity">
+                    <button onClick={() => updateQuantity(item.product._id, item.size, item.quantity - 1)}>−</button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => updateQuantity(item.product._id, item.size, item.quantity + 1)}>+</button>
+                  </div>
+                  <button className="cart-item-remove" style={{marginTop: '10px', background: 'transparent', border: '1px solid #ccc', padding: '5px', cursor: 'pointer'}} onClick={() => removeFromCart(item.product._id, item.size)}>Quitar</button>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         {/* Right Column: Summary */}
@@ -57,11 +61,11 @@ const Checkout = () => {
 
           <div className="summary-row">
             <span className="summary-label">Subtotal</span>
-            <span className="summary-value">$179.00</span>
+            <span className="summary-value">${cartTotal.toFixed(2)}</span>
           </div>
 
           <div className="summary-row">
-            <span className="summary-label">Envio</span>
+            <span className="summary-label">Envío</span>
             <span className="summary-value">Gratis</span>
           </div>
 
@@ -69,10 +73,12 @@ const Checkout = () => {
 
           <div className="summary-row total-row">
             <span className="summary-label">Total</span>
-            <span className="summary-value">$179.00</span>
+            <span className="summary-value">${cartTotal.toFixed(2)}</span>
           </div>
 
-          <Link to="/pago" className="proceed-btn" style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}>Proceder al pago</Link>
+          {cartItems.length > 0 && (
+            <Link to="/pago" className="proceed-btn" style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}>Proceder al pago</Link>
+          )}
         </div>
 
       </div>

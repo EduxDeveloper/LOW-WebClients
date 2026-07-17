@@ -58,7 +58,15 @@ loginClientController.login = async (req, res) => {
 
         await clientFound.save();
 
-        return res.status(200).json({message: "Login successful"});
+        return res.status(200).json({
+            message: "Login successful",
+            user: {
+                _id: clientFound._id,
+                name: clientFound.name,
+                email: clientFound.email,
+                userType: 'client'
+            }
+        });
 
             
     } catch (error) {

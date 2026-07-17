@@ -12,6 +12,7 @@ const Login = () => {
     email: '',
     password: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,6 +20,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isLoading) return;
+
+    setIsLoading(true);
 
     try {
       const response = await fetch('http://localhost:4000/api/loginClient', {
@@ -59,6 +63,8 @@ const Login = () => {
         icon: 'error',
         confirmButtonColor: '#111',
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -99,7 +105,15 @@ const Login = () => {
             <Link to="/recuperar">¿Olvidaste tu contraseña?</Link>
           </div>
 
-          <button type="submit" className="auth-btn-primary">Iniciar Sesión</button>
+          <button type="submit" className="auth-btn-primary" disabled={isLoading}>
+            {isLoading ? (
+              <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                <span className="spinner"></span> Cargando...
+              </span>
+            ) : (
+              'Iniciar Sesión'
+            )}
+          </button>
         </form>
 
         <hr className="auth-divider" />

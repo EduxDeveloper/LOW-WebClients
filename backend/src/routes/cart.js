@@ -8,6 +8,12 @@ router.route("/")
 .get(cartController.getAllCarts)
 .post(cartController.insertCart);
 
+router.route("/client/:clientId")
+.get(cartController.getCartByClient);
+
+router.route("/sync")
+.post(cartController.syncCart);
+
 router.route("/:id")
 .put(cartController.updateCart)
 .delete(cartController.deleteCart);

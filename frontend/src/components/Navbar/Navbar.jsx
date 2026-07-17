@@ -2,6 +2,7 @@ import { useState, useContext, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, ShoppingCart, Menu, X, LogOut } from 'lucide-react';
 import { AuthContext } from '../../context/AuthContext';
+import Swal from 'sweetalert2';
 import './Navbar.css';
 
 const Navbar = ({ onOpenCart }) => {
@@ -64,6 +65,9 @@ const Navbar = ({ onOpenCart }) => {
             </button>
             {isProfileMenuOpen && (
               <div className="profile-dropdown-menu">
+                <Link to="/mis-pedidos" className="dropdown-link" onClick={() => setIsProfileMenuOpen(false)}>
+                  Mis Pedidos
+                </Link>
                 <button className="logout-btn" onClick={handleLogout}>
                   <LogOut size={16} /> Cerrar Sesión
                 </button>
@@ -76,7 +80,22 @@ const Navbar = ({ onOpenCart }) => {
           </Link>
         )}
         
-        <button className="cart-btn" onClick={() => { onOpenCart(); closeMobileMenu(); }}>
+        <button className="cart-btn" onClick={() => {
+          if (!user) {
+            Swal.fire({
+              title: '¡Atención!',
+              text: 'Inicia sesión para usar el carrito',
+              icon: 'info',
+              confirmButtonText: 'Ir a Login',
+              confirmButtonColor: '#111'
+            }).then(() => {
+              navigate('/login');
+            });
+          } else {
+            onOpenCart();
+          }
+          closeMobileMenu();
+        }}>
           <ShoppingCart size={20} />
         </button>
         <button className="mobile-menu-btn" onClick={toggleMobileMenu}>

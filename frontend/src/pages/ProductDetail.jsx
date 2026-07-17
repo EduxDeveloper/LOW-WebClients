@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PrimaryButton, SecondaryButton } from '../components/Buttons/Buttons';
 import { CartContext } from '../context/CartContext';
+import { AuthContext } from '../context/AuthContext';
 import Swal from 'sweetalert2';
 import './ProductDetail.css';
 
@@ -16,6 +17,7 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
 
   const { addToCart } = useContext(CartContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -46,6 +48,24 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = () => {
+    if (!user) {
+      Swal.fire({
+        title: '¡Atención!',
+        text: 'Debes iniciar sesión para agregar productos al carrito.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ir a Login',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#111',
+        cancelButtonColor: '#999'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login');
+        }
+      });
+      return;
+    }
+    
     if (product) {
       addToCart(product, quantity, selectedSize);
       Swal.fire({

@@ -5,7 +5,7 @@ const clientSchema = new Schema({
     lastName: { type: String},
     email: { type: String},
     password: { type: String},
-    birthdate: {type: Number},   
+    birthdate: {type: Date},   
     phone: { type: String},
     address: { type: String},
     isActive: { type: Boolean},

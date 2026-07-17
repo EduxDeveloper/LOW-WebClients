@@ -15,6 +15,7 @@ import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import Checkout from './pages/Checkout';
 import Payment from './pages/Payment';
+import MyOrders from './pages/MyOrders';
 import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/recuperar" element={<ForgotPassword />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/pago" element={<Payment />} />
+            <Route path="/mis-pedidos" element={<MyOrders />} />
             <Route path="/producto/:id" element={<ProductDetail />} />
           </Routes>
         </main>

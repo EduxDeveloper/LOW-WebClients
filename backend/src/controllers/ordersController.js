@@ -34,6 +34,18 @@ orderController.getById = async (req, res) => {
   }
 }
 
+// GET /api/orders/client/:clientId
+orderController.getByClient = async (req, res) => {
+  try {
+    const orders = await orderModel.find({ client: req.params.clientId })
+      .populate("items.product", "name images price")
+      .sort({ createdAt: -1 })
+    res.status(200).json(orders)
+  } catch (error) {
+    res.status(500).json({ message: "Error al obtener pedidos del cliente" })
+  }
+}
+
 // POST /api/orders
 orderController.create = async (req, res) => {
   try {

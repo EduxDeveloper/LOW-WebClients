@@ -9,6 +9,7 @@ router.get("/revenue", orderController.getRevenueChart)
 router.get("/", orderController.getAll)
 router.post("/", orderController.create)
 router.get("/:id", orderController.getById)
+router.get("/client/:clientId", orderController.getByClient)
 router.put("/:id", orderController.updateStatus)
 router.delete("/:id", orderController.delete)
 

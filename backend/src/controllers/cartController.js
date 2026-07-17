@@ -22,6 +22,64 @@ cartController.getAllCarts = async (req, res) => {
     }
 }
 
+//GET CART BY CLIENT ID
+cartController.getCartByClient = async (req, res) => {
+    try {
+        const { clientId } = req.params;
+        const cart = await cartModel.findOne({ customerId: clientId, status: { $ne: 'completed' } })
+            .populate("products.productId", "name price images")
+            .populate("products.productCustomId", "name price");
+            
+        if (!cart) {
+            return res.status(200).json(null); // Return null instead of 404 to avoid console errors if they don't have one
+        }
+
+        return res.status(200).json(cart);
+    } catch (error) {
+        console.log("error"+ error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+
+// SYNC CART
+cartController.syncCart = async (req, res) => {
+    try {
+        const { clientId, products, status } = req.body;
+        let total = 0;
+        let newProducts = [];
+
+        for (let i = 0; i < products.length; i++) {
+            const productFound = await productModel.findById(products[i].productId);
+            if (productFound) {
+                const subtotal = productFound.price * products[i].quantity;
+                total += subtotal;
+                newProducts.push({
+                    productId: products[i].productId,
+                    quantity: products[i].quantity,
+                    size: products[i].size,
+                    subtotal: subtotal
+                });
+            }
+        }
+
+        const updatedCart = await cartModel.findOneAndUpdate(
+            { customerId: clientId, status: { $ne: 'completed' } },
+            {
+                customerId: clientId,
+                products: newProducts,
+                total,
+                status: status || 'pending'
+            },
+            { new: true, upsert: true }
+        );
+
+        return res.status(200).json({ message: "Cart synced successfully", cart: updatedCart });
+    } catch (error) {
+        console.log("error"+ error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+
 //INSERT
 cartController.insertCart = async (req, res) => {
 
@@ -51,6 +109,7 @@ cartController.insertCart = async (req, res) => {
             newProducts.push({
                 productId: products[i].productId,
                 quantity: products[i].quantity,
+                size: products[i].size,
                 subtotal: subtotal
             });
         }
@@ -65,7 +124,7 @@ cartController.insertCart = async (req, res) => {
 
         await newCart.save();
 
-        return res.status(200).json({message: "Cart created successfully"});
+        return res.status(200).json({message: "Cart created successfully", cart: newCart});
 
     } catch (error) {
         console.log("error"+ error);
@@ -102,6 +161,7 @@ cartController.updateCart = async (req, res) => {
             newProducts.push({
                 productId: products[i].productId,
                 quantity: products[i].quantity,
+                size: products[i].size,
                 subtotal: subtotal
             })
         }
