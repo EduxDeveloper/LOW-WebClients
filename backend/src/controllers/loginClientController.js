@@ -75,4 +75,33 @@ loginClientController.login = async (req, res) => {
     }
 };
 
+//obtener el perfil del cliente autenticado (usa el middleware verifyClientToken)
+loginClientController.me = async (req, res) => {
+    try {
+        const clientFound = await clientModel.findById(req.clientId).select("-password");
+        if (!clientFound) {
+            return res.status(404).json({ message: "Cliente no encontrado" });
+        }
+
+        return res.status(200).json({
+            _id: clientFound._id,
+            name: clientFound.name,
+            lastName: clientFound.lastName,
+            email: clientFound.email,
+            phone: clientFound.phone,
+            address: clientFound.address,
+            userType: "client"
+        });
+    } catch (error) {
+        console.log("error" + error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+//cerrar sesión: borra la cookie authCookie
+loginClientController.logout = async (req, res) => {
+    res.clearCookie("authCookie");
+    return res.status(200).json({ message: "Sesión cerrada" });
+};
+
 export default loginClientController;
