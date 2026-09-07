@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer"; //envía correos electrónicos
+import { sendBrevoEmail } from "../utils/sendBrevoEmail.js"; //envía correos electrónicos vía Brevo (Render bloquea SMTP)
 import crypto from "crypto"; //genera tokens aleatorios
 import jsonwebtoken from "jsonwebtoken"; //genera tokens JWT para autenticación
 import bcryptjs from "bcryptjs"; //hashea contraseñas
@@ -61,31 +61,19 @@ registerEmployeeController.register = async (req, res) => {
         //guardar el token en una cookie
         res.cookie("registrationCookie", token, {maxAge: 15 * 60 * 1000});
 
-        //enviar el correo con el codigo de verificacion
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: config.email.user_email,
-                pass: config.email.user_password
-            }
-        });
+        //enviar el correo con el codigo de verificacion (vía Brevo)
+        try {
+            await sendBrevoEmail({
+                to: email,
+                subject: "Código de verificación",
+                html: HTMLRegisterEmail(randomCode)
+            });
+        } catch (emailError) {
+            console.log(emailError)
+            return res.status(500).json({ message: 'Error sending email' });
+        }
 
-        //mail options ¿quien lo recibe y como?
-        const mailOptions = {
-            from: config.email.user_email,
-            to: email,
-            subject: "Código de verificación",
-            text: "El vence en 15 minutos",
-            html: HTMLRegisterEmail(randomCode)
-        };
-
-         //3. Enviar el correo
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log(error)
-                return res.status(500).json({ message: 'Error sending email' });
-            }                return res.status(200).json({ message: 'Email sent successfully' });
-        });
+        return res.status(200).json({ message: 'Email sent successfully' });
 
 
     } catch (error) {

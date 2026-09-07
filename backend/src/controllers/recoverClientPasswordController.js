@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import { sendBrevoEmail } from "../utils/sendBrevoEmail.js"; //envía correos vía Brevo (Render bloquea SMTP)
 import crypto from "crypto";
 import jsonwebtoken from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
@@ -27,28 +27,18 @@ recoverClientPasswordController.sendRecoveryCode = async (req, res) => {
 
         res.cookie("recoverPasswordCookie", token, { maxAge: 15 * 60 * 1000 });
 
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: config.email.user_email,
-                pass: config.email.user_password
-            }
-        });
+        try {
+            await sendBrevoEmail({
+                to: email,
+                subject: "Recuperación de Contraseña - LØØM & WEFT",
+                html: HTMLRecoverEmail(randomCode)
+            });
+        } catch (emailError) {
+            console.log(emailError);
+            return res.status(500).json({ message: 'Error enviando el correo' });
+        }
 
-        const mailOptions = {
-            from: config.email.user_email,
-            to: email,
-            subject: "Recuperación de Contraseña - LØØM & WEFT",
-            html: HTMLRecoverEmail(randomCode)
-        };
-
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log(error);
-                return res.status(500).json({ message: 'Error enviando el correo' });
-            }
-            return res.status(200).json({ message: 'Correo enviado exitosamente' });
-        });
+        return res.status(200).json({ message: 'Correo enviado exitosamente' });
 
     } catch (error) {
         console.log("error", error);

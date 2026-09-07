@@ -11,6 +11,10 @@ export const config = {
         user_email: process.env.USER_EMAIL,
         user_password: process.env.USER_PASSWORD
     },
+    brevo: {
+        api_key: process.env.BREVO_API_KEY,
+        sender_email: process.env.BREVO_SENDER_EMAIL
+    },
     cloudinary: {
         cloudinary_name: process.env.CLOUDINARY_CLOUD_NAME,
         cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
