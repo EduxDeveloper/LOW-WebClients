@@ -17,6 +17,7 @@ import productCustomRoutes from "./src/routes/productCustom.js"
 import cartRoutes from "./src/routes/cart.js"
 import generalReviewRoutes from "./src/routes/generalReview.js"
 import orderRoutes from "./src/routes/orders.js"
+import wompiRoutes from "./src/routes/wompi.js"
 
 //creo una constante app que es una instancia de express, esto me permite usar todas las funcionalidades de express para crear mi servidor y manejar rutas, middlewares, etc.
 
@@ -56,5 +57,7 @@ app.use("/api/carts", cartRoutes);
 app.use("/api/generalReviews", generalReviewRoutes);
 //orders
 app.use("/api/orders", orderRoutes)
+
+app.use("/api/wompi", wompiRoutes)
 
 export default app;
